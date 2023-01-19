@@ -1,5 +1,4 @@
 import { Plus } from 'phosphor-react'
-import { Habit } from './Habit'
 
 import logoImage from '../assets/logo.svg'
 
@@ -15,9 +14,6 @@ export function Header() {
           <Plus size={20} className='text-violet-500' />
           Novo Habit
         </button>
-      </div>
-      <div>
-        <Habit completed={3} />
       </div>
     </div>
   )
