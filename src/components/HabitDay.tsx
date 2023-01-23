@@ -13,8 +13,6 @@ interface HabitDayProps {
 
 export function HabitDay({ date, completed = 0, amount = 0 }: HabitDayProps) {
 
-	console.log(date, amount, completed)
-
 	const completedPercentage = amount > 0
 		? Math.round((completed / amount) * 100)
 		: 0
