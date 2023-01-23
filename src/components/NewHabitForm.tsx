@@ -41,6 +41,7 @@ export function NewHabitForm() {
         className='p-4 rounded-lg mt-3 bg-zinc-800 text-white placeholder:text-zinc-500'
         autoFocus
         onChange={(event) => setTitle(event.target.value)}
+        value={title}
       />
 
       <label htmlFor="" className='font-semibold leading-tight mt-4'>

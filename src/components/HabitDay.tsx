@@ -1,17 +1,27 @@
 import * as Checkbox from '@radix-ui/react-checkbox'
 import * as Popover from '@radix-ui/react-popover'
 import clsx from 'clsx'
+import dayjs from 'dayjs'
 import { Calendar, Check } from 'phosphor-react'
 import { ProgressBar } from './ProgressBar'
 
 interface HabitDayProps {
-	completed: number
-	amount: number
+	date: Date
+	completed?: number
+	amount?: number
 }
 
-export function HabitDay({ completed, amount }: HabitDayProps) {
+export function HabitDay({ date, completed = 0, amount = 0 }: HabitDayProps) {
 
-	const completedPercentage = Math.round((completed / amount) * 100)
+	console.log(date, amount, completed)
+
+	const completedPercentage = amount > 0
+		? Math.round((completed / amount) * 100)
+		: 0
+
+	const dayAndMonth = dayjs(date).format('DD / MM')
+	const dayOdWeeks = dayjs(date).format('dddd')
+
 	return (
 		<Popover.Root>
 
@@ -33,53 +43,15 @@ export function HabitDay({ completed, amount }: HabitDayProps) {
 					<div className='flex items-center justify-around '>
 						<Calendar className='mt-1 font-extrabold text-3xl' />
 						<div >
-							<span>terça-feira</span>{' - '}
-							<span>17/01</span>
+							<span>{dayAndMonth}</span>{' - '}
+							<span>{dayOdWeeks}</span>
 						</div>
 					</div>
 
 					<ProgressBar progress={completedPercentage} />
 
+					{ }
 					<div className='mt-4 flex flex-col gap-3'>
-						<Checkbox.Root className='flex items-center  gap-3 group'>
-
-							<div className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-800 border-2 border-zinc-500 group-data-[state=checked]:bg-yellow-500 group-data-[state=checked]:border-yellow-600 opacity-90'>
-								<Checkbox.Indicator >
-									<Check size={24} className=' text-violet-600' />
-								</Checkbox.Indicator>
-							</div>
-
-							<span className='font-semibold text-xl text-white leading-tight group-data-[state=checked]:line-through group-data-[state=checked]:text-zinc-400'>
-								Beber dois litros de água
-							</span>
-
-						</Checkbox.Root>
-						<Checkbox.Root className='flex items-center  gap-3 group'>
-
-							<div className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-800 border-2 border-zinc-500 group-data-[state=checked]:bg-yellow-500 group-data-[state=checked]:border-yellow-600 opacity-90'>
-								<Checkbox.Indicator >
-									<Check size={24} className=' text-violet-600' />
-								</Checkbox.Indicator>
-							</div>
-
-							<span className='font-semibold text-xl text-white leading-tight group-data-[state=checked]:line-through group-data-[state=checked]:text-zinc-400'>
-								Beber dois litros de água
-							</span>
-
-						</Checkbox.Root>
-						<Checkbox.Root className='flex items-center  gap-3 group'>
-
-							<div className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-800 border-2 border-zinc-500 group-data-[state=checked]:bg-yellow-500 group-data-[state=checked]:border-yellow-600 opacity-90'>
-								<Checkbox.Indicator >
-									<Check size={24} className=' text-violet-600' />
-								</Checkbox.Indicator>
-							</div>
-
-							<span className='font-semibold text-xl text-white leading-tight group-data-[state=checked]:line-through group-data-[state=checked]:text-zinc-400'>
-								Beber dois litros de água
-							</span>
-
-						</Checkbox.Root>
 						<Checkbox.Root className='flex items-center  gap-3 group'>
 
 							<div className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-800 border-2 border-zinc-500 group-data-[state=checked]:bg-yellow-500 group-data-[state=checked]:border-yellow-600 opacity-90'>
